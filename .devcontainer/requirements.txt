@@ -1,4 +1,6 @@
 pytest
 pytest-timeout
 black
+requests
+lxml
 # pytest-doctestplus
