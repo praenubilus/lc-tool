@@ -18,5 +18,16 @@ ENV USER_HOME /home/vscode
 RUN git clone https://github.com/sindresorhus/pure.git "$USER_HOME/.zsh/pure"
 RUN echo "\nfpath+=$USER_HOME/.zsh/pure\nautoload -U promptinit; promptinit\nprompt pure" >> "$USER_HOME/.zshrc"
 
+# install chrome for scraper
+RUN mkdir -p /tmp/chrome \
+   && cd /tmp/chrome \
+   && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+RUN cd /tmp/chrome \
+   && ls \
+   && sudo dpkg -i google-chrome*.deb || true \
+   && sudo apt update \
+   && sudo apt --fix-broken install -y
+
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends zsh
+#     && apt-get -y install --no-install-recommends chromium-browser

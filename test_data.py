@@ -1,3 +1,5 @@
+""" Unit Tests for data.Data class
+"""
 import pytest
 import os
 from Data import Data
@@ -63,6 +65,3 @@ def test_data_load_and_persistence(dt_default):
     dt_default.do_persistence()
     assert os.path.exists(config.DATA_FILE_PATH)
     os.remove(config.DATA_FILE_PATH)
-
-
-# f"URL: {config.PROBLEM_URL_PREFIX+data[qid]['stat']['question__title_slug']}"

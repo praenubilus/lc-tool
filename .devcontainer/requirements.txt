@@ -1,6 +1,6 @@
 pytest
 pytest-timeout
 black
-requests
-lxml
+requests_html
+markdownify
 # pytest-doctestplus
