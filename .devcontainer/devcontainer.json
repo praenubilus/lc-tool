@@ -35,6 +35,7 @@
 		"ms-python.python",
 		"ms-python.vscode-pylance",
 		"christian-kohler.path-intellisense",
+		"visualstudioexptteam.vscodeintellicode",
 	],
 	// link/mount external directory to container
 	// "mounts": [

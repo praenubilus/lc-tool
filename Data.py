@@ -124,19 +124,24 @@ class Problem:
             else None
         )
 
-    def _scrape(self, url=None):
+    def _scrape_n_render(self, url=None):
         if not url:
             url = self.url
-        r = HTMLSession().get(url)
-        r.html.render()
+        response = HTMLSession().get(url)
+        response.html.render()
+
+        return response
+
+    def scrape(self, url=None):
+        r = self._scrape_n_render(url=url)
 
         # self.content, self.contetnt_md = self._scrape_problem_content(r.html)
-        with open("html-content.html", "w") as f:
-            f.write(r.html.html)
-        with open("html-raw-content.html", "w") as f:
-            f.write(r.raw_html)
+        # with open("html-content.html", "w") as f:
+            # f.write(r.html.html)
+        # with open("html-raw-content.html", "w") as f:
+            # f.write(r.html.raw_html.decode("utf-8"))
         self.tags = self._scrape_problem_topics(r.html)
-        self.tags = self._scrape_problem_companies(r.html)
+        self.companies = self._scrape_problem_companies(r.html)
 
     def _scrape_problem_topics(self, html):
         t_elements = html.xpath("//a[starts-with(@class,'topic-tag')]/span")

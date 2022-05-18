@@ -60,7 +60,16 @@ def test_problem_parse_url_solution(prob):
     assert res == TEST_Q_TITLE_URL_SOLUTION
 
 
-def test_scrape(prob):
+def test_scrape_n_render(prob):
     prob.parse(prob.stat)
-    prob._scrape()
-    assert False
+    r = prob._scrape_n_render()
+
+    assert r.status_code == 200
+
+def test_scrape_problem_topics(prob):
+    prob.parse(prob.stat)
+    r = prob._scrape_n_render()
+    tags = prob._scrape_problem_topics(r.html)
+
+    assert "Array" in tags
+    assert "Hash Table" in tags
